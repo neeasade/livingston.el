@@ -1,5 +1,7 @@
 ;; a transient example?:
 ;; https://gist.github.com/abrochard/dd610fc4673593b7cbce7a0176d897de
+;; https://github.com/magit/magit/blob/master/lisp/magit-status.el#L357
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Tabulated-List-Mode.html
 
 ;; huuuuuuuuuge thanks to @abrochard
 
