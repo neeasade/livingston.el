@@ -1,1 +1,5 @@
-wow
+
+@crockeo and I wanted to use a lisp for... something
+
+see:
+- https://fightingfantasy.fandom.com/wiki/Game_System
