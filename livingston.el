@@ -4,23 +4,14 @@
 ;; https://github.com/magit/transient
 ;; https://github.com/ebpa/tui.el
 
-;; get the sugar
-(progn
-  (use-package s)    ;; string
-  (use-package f)    ;; file
-  (use-package ht)   ;; hash table
-  (use-package dash) ;; list
-  )
+
+(load-file "./livingston-core.el")
 
 (setq ffl/state
   (ht
     (:player nil)
     (:monsters-defeated nil)
     (:monsters-fighting nil)))
-
-(defun ffl/roll-die (&optional times)
-  (* (or times 1)
-    (+ 1 (random 6))))
 
 (defun ffl/new-player ()
   ;; skill: Roll 1d6 and add 6 to the score
