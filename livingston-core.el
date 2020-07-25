@@ -9,3 +9,5 @@
 (defun ffl/roll-die (&optional times)
   (* (or times 1)
     (+ 1 (random 6))))
+
+(provide 'livingston-core)

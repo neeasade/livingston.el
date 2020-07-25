@@ -1,4 +1,5 @@
-(load-file "./livingston-core.el")
+(require 'livingston-core)
+(require 'livingston-weapons)
 
 (defun ffl/combat/attack-strength (entity)
   (+
@@ -11,3 +12,5 @@
     (if (>= player-attack-strength monster-attack-strength)
       :player
       :monster)))
+
+(provide 'livingston-combat)

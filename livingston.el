@@ -4,8 +4,13 @@
 ;; https://github.com/magit/transient
 ;; https://github.com/ebpa/tui.el
 
+;; crazy thing to add current dir to load-path for require:
+;;
+;; (let ((current-dir (file-name-directory buffer-file-name))) (unless (member current-dir load-path) (setq load-path (append load-path `(,current-dir)))))
+;;
 
-(load-file "./livingston-core.el")
+(require 'livingston-combat)
+(require 'livingston-core)
 
 (setq ffl/state
   (ht

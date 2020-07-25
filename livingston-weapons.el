@@ -26,5 +26,4 @@
   (let ((weapon (ht-get ffl/weapons/weapon-table weapon)))
     (or (nth (- roll 1) weapon) (car (last weapon)))))
 
-(provide 'ffl/weapons/available)
-(provide 'ffl/weapons/damage)
+(provide 'livingston-weapons)
