@@ -8,12 +8,14 @@
 
 (defmacro ffl/comment (&rest body) nil)
 
-(defmacro ffl/with-ht-context (table content)
+(defmacro ht-with-context (table content)
   (-tree-map
     (lambda (tree)
       (-tree-map-nodes (lambda (node) t)
         (lambda (node)
-          (if (s-starts-with-p ":" (prin1-to-string node))
+          (if (and
+                (s-starts-with-p ":" (prin1-to-string node))
+                (-contains-p (ht-keys (eval table)) node))
             (list 'ht-get table node)
             node))
         tree))
@@ -21,11 +23,11 @@
 
 (ffl/comment
   (macroexpand-1
-    `(ffl/with-ht-context
+    `(ht-with-context
        ffl/state
        (progn :player)))
 
-  (ffl/with-ht-context
+  (ht-with-context
     ffl/state
     :player))
 
