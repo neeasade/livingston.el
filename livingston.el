@@ -14,9 +14,11 @@
 
 (setq ffl/state
   (ht
-    (:player nil)
-    (:monsters-defeated nil)
-    (:monsters-fighting nil)))
+    (:player 1)
+    (:monsters-defeated '())
+    ;; sometimes you are fighting multiple monsters
+    (:monsters-fighting '())
+    ))
 
 (defun ffl/new-player ()
   ;; skill: Roll 1d6 and add 6 to the score
@@ -36,9 +38,7 @@
     (:name name)
     (:skill skill)
     (:stamina stamina)
-    (:luck nil)
-    (:inventory nil)
-    (:gold nil)))
+    (:luck nil)))
 
 (defun ffl/init-game ()
   nil

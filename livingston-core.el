@@ -6,6 +6,29 @@
   (use-package dash) ;; list
   )
 
+(defmacro ffl/comment (&rest body) nil)
+
+(defmacro ffl/with-ht-context (table content)
+  (-tree-map
+    (lambda (tree)
+      (-tree-map-nodes (lambda (node) t)
+        (lambda (node)
+          (if (s-starts-with-p ":" (prin1-to-string node))
+            (list 'ht-get table node)
+            node))
+        tree))
+    content))
+
+(ffl/comment
+  (macroexpand-1
+    `(ffl/with-ht-context
+       ffl/state
+       (progn :player)))
+
+  (ffl/with-ht-context
+    ffl/state
+    :player))
+
 (defun ffl/roll-die (&optional times)
   (* (or times 1)
     (+ 1 (random 6))))

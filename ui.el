@@ -5,20 +5,46 @@
 
 ;; huuuuuuuuuge thanks to @abrochard
 
+;; for now: assume there will only be one game buffer, *livingstone*
+
+(defmacro ffl/with-buffer (content)
+  `(with-current-buffer "*livingstone*"
+     ,@content
+     ))
+
+;; return plist with name + index attached
+(defun ffl/unroll-list (name list)
+  (->> list
+    (-map-indexed
+      (lambda (i item)
+        (list (intern (format ":%s-%s" name i)) item)))
+    (-flatten)))
+
+;; (ffl/unroll-list "test" '(1 2 3))
+
+(defun ffl/state-to-rows (state)
+  (ffl/with-ht-context state
+    ;; todo
+    ))
+
+(defun ffl/render-ui (state)
+  ;; see core for state outline, ht
+  ;; (ht-get state :monsters-defeated '())
+  )
+
 ;; number is percent?
 (let ((columns [("Col1" 50) ("Col2" 50)])
        (rows (list
                '(nil ["row1" "value1"])
                '(nil ["row2" "value2"])
                '(nil ["row3" "value3"]))))
-  (switch-to-buffer "*temp*")
   (setq tabulated-list-format columns)
   (setq tabulated-list-entries rows)
   (tabulated-list-init-header)
   (tabulated-list-print))
 
 (define-derived-mode livingstone-mode tabulated-list-mode "Livingstone"
-  "Kubernetes mode"
+  "livingstone mode"
   (let ((columns
           ;; todo
           ;; [("Pod" 100)]
