@@ -20,14 +20,15 @@
 
 (defun ffl/combat/perform-attack (attacker recipient)
   (ffl/leth (stamina) recipient
-    (ht-set recipient :stamina (- stamina (ffl/combat/calculate-damage attacker)))))
+    (ht-set recipient :stamina (- stamina (ffl/combat/calculate-damage attacker)))
+    recipient))
 
 (defun ffl/combat/do-round (player monster)
   (let ((attacker (ffl/combat/determine-attacker player monster)))
     (cond
-      ((= attacker nil) `(,player ,monster))
-      ((= attacker :player `(,player ,(ffl/combat/perform-attack player monster))))
-      ((= attacker :monster `(,(ffl/combat/perform-attack monster player) ,monster))))))
+      ((equal attacker nil) `(,player ,monster))
+      ((equal attacker :player) `(,player ,(ffl/combat/perform-attack player monster)))
+      ((equal attacker :monster) `(,(ffl/combat/perform-attack monster player) ,monster)))))
 
 (defun ffl/combat/do-combat (player monster)
   (if (or
@@ -35,5 +36,11 @@
         (<= (ht-get monster :stamina) 0))
     `(,player ,monster)
     (apply 'ffl/combat/do-combat (ffl/combat/do-round player monster))))
+
+(ffl/comment
+  ;; Executes combat against the EYE OF GIL'ROGG
+  (let ((player (ffl/new-player))
+         (monster (ffl/new-monster "Eye of Gil'Rogg" 6 10)))
+    (ffl/combat/do-combat player monster)))
 
 (provide 'livingston-combat)
