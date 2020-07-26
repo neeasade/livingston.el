@@ -8,4 +8,4 @@ See the [[https://fightingfantasy.fandom.com][Fighting Fantasy Wiki]] to learn m
 ** Contributors
 
 - [[https://github.com/neeasade][@neeasade]]
-- [[https://github.com][@crockeo]]
+- [[https://github.com/crockeo][@crockeo]]
