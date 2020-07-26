@@ -1,5 +1,11 @@
+* livingston.el
 
-@crockeo and I wanted to use a lisp for... something
+A pocket calculator to help you play Ian Livingstone's Fighting Fantasy
+adventure gamebooks, all from the comfort of you own home!
 
-see:
-- https://fightingfantasy.fandom.com/wiki/Game_System
+See the [[https://fightingfantasy.fandom.com][Fighting Fantasy Wiki]] to learn more.
+
+** Contributors
+
+- [[https://github.com/neeasade][@neeasade]]
+- [[https://github.com][@crockeo]]
