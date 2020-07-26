@@ -15,8 +15,10 @@
       ((< player-attack-strength monster-attack-strength) :monster))))
 
 (defun ffl/combat/calculate-damage (attacker)
-  ;; TODO: calculate damage from an attacker?
-  2)
+  (let ((weapon (ht-get attacker :weapon)))
+    (if weapon
+      (ffl/weapons/damage weapon (ffl/roll-die))
+      2)))
 
 (defun ffl/combat/perform-attack (attacker recipient)
   (ffl/leth (stamina) recipient
@@ -41,6 +43,7 @@
   ;; Executes combat against the EYE OF GIL'ROGG
   (let ((player (ffl/new-player))
          (monster (ffl/new-monster "Eye of Gil'Rogg" 6 10)))
+    (ht-set player :weapon :battle-axe)
     (ffl/combat/do-combat player monster)))
 
 (provide 'livingston-combat)
