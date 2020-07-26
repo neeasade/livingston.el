@@ -44,26 +44,6 @@
         lists))
     (number-sequence 1 (apply 'max (mapcar 'length lists)))))
 
-(defmacro ffl/letl (var-names list &rest body)
-  "Assigns a series of variable names to the values of a list, and uses them in the body as in a
-let function."
-  ;; This function has a problem! The following causes an error:
-  ;;
-  ;; (let ((min 1)
-  ;;       (max 2))
-  ;;   (ffl/letl (a b) (number-sequence min max)
-  ;;     `(,a ,b)))
-  ;;
-  ;; But weirdly the following does not,
-  ;;
-  ;; (let ((attempt '(let ((min 1)
-  ;;                       (max 2))
-  ;;                   (ffl/letl (a b) (number-sequence min max)
-  ;;                     `(,a ,b)))))
-  ;;   (eval attempt))
-  `(let ,(ffl/zip var-names (eval list))
-     ,@body))
-
 (defmacro ffl/leth (var-names ht &rest body)
   "Assigns a series of variable names to the corresponding values of a hash table, and uses them in
 the body as in a let function."
