@@ -23,12 +23,22 @@
   ;; stamina: Roll 2d6 and add 12 to the score
   ;; luck: Roll 1d6 and add 6 to the score
   (ht
+    (:name "Player Character")
     (:skill (+ 6 (ffl/roll-die)))
     (:stamina (+ 12 (ffl/roll-die 2)))
     (:luck (+ 6 (ffl/roll-die)))
     (:inventory '())
     (:gold 0)
     ))
+
+(defun ffl/new-monster (name skill stamina)
+  (ht
+    (:name name)
+    (:skill skill)
+    (:stamina stamina)
+    (:luck nil)
+    (:inventory nil)
+    (:gold nil)))
 
 (defun ffl/init-game ()
   nil
